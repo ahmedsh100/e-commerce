@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 Route::get('/dashboard', [HomeController::class, 'Premium'])->name('dashboard')->middleware(['auth', 'verified']);
