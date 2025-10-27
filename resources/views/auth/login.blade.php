@@ -45,10 +45,7 @@
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
+              <a href="{{ route('register') }}" class="text-center">Register</a>
             </div>
           </div>
           <!-- /.col -->
@@ -67,7 +64,6 @@
         @endif
       </p>
       <p class="mb-0">
-        <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
       </p>
     </div>
     <!-- /.card-body -->
