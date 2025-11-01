@@ -23,7 +23,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{asset('backend/pages/examples/invoice.html')}}" class="nav-link">
+                <a href="{{route('read_category')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Categories</p>
                 </a>
