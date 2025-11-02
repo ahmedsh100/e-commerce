@@ -45,7 +45,7 @@
                                         @foreach($categories as $category)
                                         <tr>
                                             <td>{{$category->id}}</td>
-                                            <td{{$category->category_name}}</td>
+                                            <td>{{$category->category_name}}</td>
                                             <td><a class="btn btn-primary" href="{{route('edit_category', $category->id)}}">Edit</a></td>
                                             <td><a class="btn btn-danger" href="{{route('delete_category', $category->id)}}">Delete</a></td>
 
