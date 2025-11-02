@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Create Category</h1>
+                        <h1 class="m-0">Edit Category</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -32,19 +32,19 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{route('create_category')}}" method="POST" enctype="multipart/form-data">
+              <form action="{{route('update_category', $category->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Category Name</label>
-                    <input type="text" class="form-control" name="category_name" placeholder="Category Name">
+                    <input type="text" name="category_name" value="{{$category->category_name}}" class="form-control" name="category_name" placeholder="Category Name">
                   </div>
 
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Create</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                 </div>
               </form>
             </div>
