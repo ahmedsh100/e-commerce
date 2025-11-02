@@ -24,8 +24,9 @@ Route::middleware('auth')->group(function () {
     
     //Admin Route
     Route::get('/read_category', [CategoryController::class, 'read_category'])->name('read_category');
-    Route::post('/edit_category/{id}', [CategoryController::class, 'edit_category'])->name('edit_category');
-    Route::post('/delete_category/{id}', [CategoryController::class, 'delete_category'])->name('delete_category');
+    Route::get('/add_category', [CategoryController::class, 'add_category'])->name('add_category');
+    Route::get('/edit_category/{id}', [CategoryController::class, 'edit_category'])->name('edit_category');
+    Route::get('/delete_category/{id}', [CategoryController::class, 'delete_category'])->name('delete_category');
 });
 
 require __DIR__.'/auth.php';
