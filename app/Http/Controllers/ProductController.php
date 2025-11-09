@@ -52,9 +52,6 @@ class ProductController extends Controller
 
         return redirect()->route('read_product');
 
-
-
-
     }
 
     public function delete_product($id){
@@ -115,122 +112,122 @@ class ProductController extends Controller
 
     }
 
-    public function frontend_index(){
+//     public function frontend_index(){
 
-        $products= Product::all();
+//         $products= Product::all();
 
-        return view('frontend.index',compact('products'));
-    }
+//         return view('frontend.index',compact('products'));
+//     }
 
-    public function product_detail($id){
+//     public function product_detail($id){
 
-        $product = Product::find($id);
+//         $product = Product::find($id);
 
-        return view('frontend.product_detail',compact('product'));
-    }
+//         return view('frontend.product_detail',compact('product'));
+//     }
 
-    public function add_cart(Request $request,$id){
+//     public function add_cart(Request $request,$id){
 
-        if(Auth::id()){
+//         if(Auth::id()){
 
-            $user = Auth::User();
-            $cart = new Cart();
-            $product= Product::find($id);
+//             $user = Auth::User();
+//             $cart = new Cart();
+//             $product= Product::find($id);
 
-            $cart->user_id = $user->id;
-            $cart->name = $user->name;
-            $cart->email = $user->email;
+//             $cart->user_id = $user->id;
+//             $cart->name = $user->name;
+//             $cart->email = $user->email;
 
-            $cart->product_id = $product->id;
-            $cart->image = $product->image;
-            $cart->title = $product->title;
-            $cart->price = $product->price;
-            $cart->Qty = $request->Qty;
+//             $cart->product_id = $product->id;
+//             $cart->image = $product->image;
+//             $cart->title = $product->title;
+//             $cart->price = $product->price;
+//             $cart->Qty = $request->Qty;
 
-            if($product->discount_price>0){
+//             if($product->discount_price>0){
 
-                $cart->price=$product->discount_price;
+//                 $cart->price=$product->discount_price;
 
-            }else{
+//             }else{
 
-                  $cart->price=$product->price;
+//                   $cart->price=$product->price;
 
-            }
+//             }
 
-            $cart->save();
-
-
-            return redirect()->route('show_cart');
-        }else{
+//             $cart->save();
 
 
-            return redirect()->route('login');
-        }
+//             return redirect()->route('show_cart');
+//         }else{
 
 
-    }
-
-    public function show_cart(){
-
-        if(Auth::id()){
-
-            $user_id= Auth::user()->id;
-
-            $carts= Cart::where('user_id',$user_id)->get();
-
-            return view('frontend.cart',compact('carts'));
-
-    }else{
-
-        return redirect()->route('login');
-    }
-
-   }
-
-   public function delete_cart($id){
-
-    $cart = Cart::find($id);
-
-    $cart->delete();
-
-    return redirect()->back();
+//             return redirect()->route('login');
+//         }
 
 
-    }
+//     }
 
-    public function checkout(){
+//     public function show_cart(){
 
-        $user_id = Auth::User()->id;
-        $carts = Cart::where('user_id',$user_id)->get();
+//         if(Auth::id()){
 
-        foreach($carts as $cart){
+//             $user_id= Auth::user()->id;
 
-            $order = new Order;
+//             $carts= Cart::where('user_id',$user_id)->get();
 
-            $order->user_id=$cart->user_id;
-            $order->product_id=$cart->product_id;
-            $order->name=$cart->name;
-            $order->email=$cart->email;
-            $order->title=$cart->title;
-            $order->image=$cart->image;
-            $order->Qty=$cart->Qty;
-            $order->price=$cart->price;
-            $order->status='Pending';
+//             return view('frontend.cart',compact('carts'));
 
-            $order->save();
+//     }else{
 
-            $cart->delete();
+//         return redirect()->route('login');
+//     }
+
+//    }
+
+//    public function delete_cart($id){
+
+//     $cart = Cart::find($id);
+
+//     $cart->delete();
+
+//     return redirect()->back();
 
 
+//     }
 
-        }
+//     public function checkout(){
+
+//         $user_id = Auth::User()->id;
+//         $carts = Cart::where('user_id',$user_id)->get();
+
+//         foreach($carts as $cart){
+
+//             $order = new Order;
+
+//             $order->user_id=$cart->user_id;
+//             $order->product_id=$cart->product_id;
+//             $order->name=$cart->name;
+//             $order->email=$cart->email;
+//             $order->title=$cart->title;
+//             $order->image=$cart->image;
+//             $order->Qty=$cart->Qty;
+//             $order->price=$cart->price;
+//             $order->status='Pending';
+
+//             $order->save();
+
+//             $cart->delete();
 
 
 
-        return view('frontend.thanks');
+//         }
 
 
-    }
+
+//         return view('frontend.thanks');
+
+
+//     }
 
 
 

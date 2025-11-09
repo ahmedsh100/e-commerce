@@ -50,13 +50,12 @@
                                         @foreach($products as $product)
                                         <tr>
                                             <td>{{$product->id}}</td>
-                                            <td>{{$product->image}}</td>
+                                            <td><img height="100" width="100" src="\photo_product\{{$product->image}}"></td>
                                             <td>{{$product->category_id}}</td>
                                             <td>{{$product->title}}</td>
                                             <td>{{$product->Qty}}</td>
                                             <td>{{$product->price}}</td>
                                             <td>{{$product->discount_price}}</td>
-                                            <td>{{$product->image}}</td>
                                             <td><a class="btn btn-primary" href="{{route('edit_product', $product->id)}}">Edit</a></td>
                                             <td><a class="btn btn-danger" href="{{route('delete_product', $product->id)}}">Delete</a></td>
 
