@@ -5,7 +5,7 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
+                <div class="mb-2 row">
                     <div class="col-sm-6">
                         <h1 class="m-0">Read product</h1>
                     </div><!-- /.col -->
@@ -51,7 +51,7 @@
                                         <tr>
                                             <td>{{$product->id}}</td>
                                             <td><img height="100" width="100" src="\photo_product\{{$product->image}}"></td>
-                                            <td>{{$product->category_id}}</td>
+                                            <td>{{$product['category_product']['category_name']}}</td>
                                             <td>{{$product->title}}</td>
                                             <td>{{$product->Qty}}</td>
                                             <td>{{$product->price}}</td>
