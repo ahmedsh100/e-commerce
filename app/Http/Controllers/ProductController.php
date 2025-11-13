@@ -39,13 +39,12 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->discount_price = $request->discount_price;
 
-        $image = $request->image;
-
-        $photoname = time().'.'.$image->getClientOriginalExtension();
-
-        $image->move('photo_product',$photoname);
-
-        $product->image = $photoname;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $photoname = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('photo_product'), $photoname);
+            $product->image = $photoname;
+        }
 
 
         $product->save();
@@ -58,7 +57,12 @@ class ProductController extends Controller
 
         $product = Product::find($id);
 
-        unlink('photo_product/'.$product->image);
+        if ($product && $product->image) {
+            $imagePath = public_path('photo_product/'.$product->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
 
         $product->delete();
 
@@ -91,18 +95,17 @@ class ProductController extends Controller
         $product->discount_price = $request->discount_price;
 
 
-        $image = $request->image;
-
-        If($image){
-
-            unlink('photo_product/'.$product->image);
-
+        if ($request->hasFile('image')) {
+            if ($product->image) {
+                $oldPath = public_path('photo_product/'.$product->image);
+                if (file_exists($oldPath)) {
+                    unlink($oldPath);
+                }
+            }
+            $image = $request->file('image');
             $photoname = time().'.'.$image->getClientOriginalExtension();
-
-            $image->move('photo_product',$photoname);
-
+            $image->move(public_path('photo_product'), $photoname);
             $product->image = $photoname;
-
         }
 
 
